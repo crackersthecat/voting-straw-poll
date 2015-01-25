@@ -7,7 +7,7 @@ I then spent an extra 30 minutes getting the constituency view working, and anot
 
 
 ## To dos
-There are a lot more to dos which I would like to have done. This is the first time that I have written a django application from scratch, as opposed to edit one that someone else has already set up. As such just getting the basics right took all of my time.
+There are a lot more things which I would like to have done. This is the first time that I have written a Django application from scratch, as opposed to edit one that someone else has already set up. As such just getting the basics right took all of my time.
 
 ### Write tests
 Write some tests to validate the system. For example checking that the total number of yes votes tallies with the totals for the parties
@@ -19,7 +19,7 @@ I'm aware that there is quite a lot of repeated code to get constituencies etc -
 I had planned to use the TheyWorkForYou API to get a list of parliamentary constituencies and use a data migration to populate the constituency table with this information
 
 ### Create charts of the data
-I would try using a js plugin such as highcharts.js to create pie charts of the results
+I would try using a Javascript plugin such as highcharts.js to create pie charts of the results
 
 ### Reload the data on the fly
 Create a timed ajax request to reload the results data on the fly in the browser - properly 'live'
@@ -28,6 +28,9 @@ Create a timed ajax request to reload the results data on the fly in the browser
 Once the real consituency data is in place the drop down will be very long - use the chosen.js plugin to make it easier to use.
 
 ### Prevent someone from voting more than once
-Set a cookie with javascript once someone has voted to stop them voting again
+Set a cookie with Javascript once someone has voted to stop them voting again
 
+## Other notes
+I have set this up as a development environment only, so I am using sqlite.
 
+I used django 1.7, python 2.7.9 and the django compressor - requirements are stored in requirements.txt
