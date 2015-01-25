@@ -1,7 +1,7 @@
 # voting-straw-poll
 
 ## Time taken
-I spent an extra hour on top of the 4 allocted hours. After 4 hours I had not got the results by constituency view working correctly. I did a git commit at that time so you can see how far I got.
+I spent an extra hour on top of the 4 allocated hours. After 4 hours I had not got the results by constituency view working correctly. I did a git commit at that time so you can see how far I got.
 
 I then spent an extra 30 minutes getting the constituency view working, and another 30 minutes adding basic styling with less. There are git commits for each of these times.
 
