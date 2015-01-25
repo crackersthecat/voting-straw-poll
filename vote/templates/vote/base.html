@@ -1,0 +1,53 @@
+<!doctype html>
+{% load static compress %}
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title></title>
+
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,600|Ovo' rel='stylesheet' type='text/css'>
+
+    {% compress css %}
+        {% comment %} Core CSS includes (for inclusion on all pages) {% endcomment %}
+        <link rel="stylesheet" type="text/less" href="{% static 'vote/css/main.less' %}">
+    {% endcompress %}
+
+    {% compress css %}
+        {% comment %}
+            Per-page CSS is compressed separately so that the global stuff doesn't get re-downloaded each time 
+        {% endcomment %}
+        {% block extra_css %}{% endblock %}
+    {% endcompress %}
+
+</head>
+<body>
+    <head>
+        <ul class="menu">
+            <li><a href="{% url 'index' %}">Vote</a></li>
+            <li><a href="{% url 'results_all' %}">All results</a></li>
+            <li><a href="{% url 'select_constituency' %}">Results by constituency</a></li>
+        </ul>
+    </head>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    {% compress js %}
+        {% comment %}
+            Core JS includes (for inclusion on all pages) to be specified here
+        {% endcomment %}
+    {% endcompress %}
+
+    {% compress js %}
+        {% comment %}
+            Per-page JS is compressed separately so that the global stuff doesn't get re-downloaded each time 
+        {% endcomment %}
+        {% block extra_js %}{% endblock %}
+    {% endcompress %}
+</body>
+</html>
