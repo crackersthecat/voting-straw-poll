@@ -5,6 +5,12 @@ I spent an extra hour on top of the 4 allocted hours. After 4 hours I had not go
 
 I then spent an extra 30 minutes getting the constituency view working, and another 30 minutes adding basic styling with less. There are git commits for each of these times.
 
+## Notes
+I have set this up as a development environment only, so I am using sqlite.
+
+I used django 1.7, python 2.7.9 and the django compressor - requirements are stored in requirements.txt
+
+You need to create a few test constituencies and parties in the admin interface before you can vote.
 
 ## To dos
 There are a lot more things which I would like to have done. This is the first time that I have written a Django application from scratch, as opposed to edit one that someone else has already set up. As such just getting the basics right took all of my time.
@@ -29,8 +35,3 @@ Once the real consituency data is in place the drop down will be very long - use
 
 ### Prevent someone from voting more than once
 Set a cookie with Javascript once someone has voted to stop them voting again
-
-## Other notes
-I have set this up as a development environment only, so I am using sqlite.
-
-I used django 1.7, python 2.7.9 and the django compressor - requirements are stored in requirements.txt
