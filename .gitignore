@@ -1,4 +1,4 @@
 /static
 *.pyc
-db.sqlite
+db.sqlite3
 manage.py

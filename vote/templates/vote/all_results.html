@@ -1,0 +1,15 @@
+
+<h1>Results</h1>
+
+<h2>How many people are voting</h2>
+Number of people voting: {{ yes_votes }}
+<br />Number of people not voting: {{ no_votes }}
+
+<h2>Results by party</h2>
+<ul>
+    {% for party in all_party_votes %}
+        <li>
+        {{ party.party }}, votes: {{ party.votes }}
+        </li>
+    {% endfor %}
+</ul>

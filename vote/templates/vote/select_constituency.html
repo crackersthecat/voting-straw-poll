@@ -1,0 +1,9 @@
+<form method="get">
+    <label for="constituency">Select a constituency to view results for</label>
+    <select id="constituency" name="constituency">
+        <option value="">Choose a constituency</option>
+        {% for constituency in constituencies %}
+            <option value="{{ constituency.id }}">{{ constituency }}</option>
+        {% endfor %}
+    </select>
+</form>

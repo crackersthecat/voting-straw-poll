@@ -1,0 +1,36 @@
+<h1>Your vote</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'process_response' %}" method="post">
+    {% csrf_token %}
+    <legend>Are you going to vote?</legend>
+    <input type="radio" name="will_you_vote" id="will_you_vote_yes" value="yes" />
+    <label for="will_you_vote_yes">Yes</label>
+    <input type="radio" name="will_you_vote" id="will_you_vote_no" value="no" />
+    <label for="will_you_vote_no">No</label>
+    </fieldset>
+
+    <br />
+
+    <label for="constituency">Select your parliamentary constituency</label>
+    <select id="constituency" name="constituency">
+        <option value="">Choose a constituency</option>
+        {% for constituency in constituencies %}
+            <option value="{{ constituency.id }}">{{ constituency }}</option>
+        {% endfor %}
+    </select>
+    
+    <br />
+
+    <label for="party">Who are you going to vote for?</label>
+    <select id="party" name="party">
+        <option value="">Choose a party</option>
+        {% for party in parties %}
+            <option value="{{ party.id }}">{{ party }}</option>
+        {% endfor %}
+    </select>
+
+    <br />
+    <input type="submit" value="Vote" />
+</form>
