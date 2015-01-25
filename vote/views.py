@@ -66,7 +66,6 @@ def process_response(request):
 
 
 def results_all(request):
-    responses = Response.objects.all()
     yes_votes = Response.objects.filter(will_you_vote=True).count()
     no_votes = Response.objects.filter(will_you_vote=False).count()
     parties = Party.objects.all()
@@ -77,12 +76,12 @@ def results_all(request):
         party_votes['votes'] = Response.objects.filter(party=party).count()
         all_party_votes.append(party_votes)
     context = {
-        'responses': responses,
         'yes_votes': yes_votes,
         'no_votes': no_votes,
-        'all_party_votes': all_party_votes
+        'all_party_votes': all_party_votes,
+        'constituency': '',
     }
-    return render(request, "vote/all_results.html", context)
+    return render(request, "vote/results.html", context)
 
 
 def select_constituency(request):
@@ -91,14 +90,38 @@ def select_constituency(request):
     return render(request, "vote/select_constituency.html", context)
 
 
-def results_by_constituency(request, constituency_id):
+def constituency_chosen(request):
     try:
-        selected_constituency = Constituency.objects.get(request.GET['constituency'])
-    except (KeyError, Constituency.DoesNotExist):
+        selected_constituency = Constituency.objects.get(id=request.GET['constituency'])
+    except (ValueError):
         return render(request, 'vote/select_constituency.html', {
             'error_message': "You didn't select a constituency.",
             'constituencies': Constituency.objects.all()
         })
-    else:
+    return HttpResponseRedirect(reverse('results_by_constituency', args=(selected_constituency.id,)))
 
-        return render(request, "vote/results_by_constituency.html", context)
+
+def results_by_constituency(request, constituency_id):
+    constituency = get_object_or_404(Constituency, pk=constituency_id)
+    yes_votes = Response.objects.filter(
+        constituency=constituency_id,
+        will_you_vote=True
+    ).count()
+    no_votes = Response.objects.filter(
+        constituency=constituency_id,
+        will_you_vote=False
+    ).count()
+    parties = Party.objects.all()
+    all_party_votes = []
+    for party in parties:
+        party_votes = {}
+        party_votes['party'] = party.party_name
+        party_votes['votes'] = Response.objects.filter(constituency=constituency_id, party=party).count()
+        all_party_votes.append(party_votes)
+    context = {
+        'yes_votes': yes_votes,
+        'no_votes': no_votes,
+        'all_party_votes': all_party_votes,
+        'constituency': constituency.constituency_name
+    }
+    return render(request, "vote/results.html", context)

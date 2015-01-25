@@ -1,4 +1,6 @@
-<form method="get">
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form method="get" action={% url 'constituency_chosen' %}>
     <label for="constituency">Select a constituency to view results for</label>
     <select id="constituency" name="constituency">
         <option value="">Choose a constituency</option>
@@ -6,4 +8,5 @@
             <option value="{{ constituency.id }}">{{ constituency }}</option>
         {% endfor %}
     </select>
+    <input type="submit" value="Select constituency" />
 </form>
