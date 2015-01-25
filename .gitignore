@@ -1,0 +1,4 @@
+/static
+*.pyc
+db.sqlite
+manage.py
